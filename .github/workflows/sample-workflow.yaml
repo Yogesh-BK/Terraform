@@ -1,10 +1,13 @@
 name: Sample workflow
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       terraform-folder-sandbox:
         description: 'Folder where the terraform code for dev environment resides'
-        required: true
+        required: false
         default: 'infra/environments/dev'
 env:
   TF_FOLDER_SANDBOX: ${{ github.event.inputs.terraform-folder-sandbox }}
@@ -22,4 +25,4 @@ jobs:
           terraform init
           terraform plan
           terraform apply -auto-approve
-        working-directory: $TF_FOLDER_SANDBOX
+        working-directory: ${{ github.event.inputs.terraform-folder-sandbox }}
