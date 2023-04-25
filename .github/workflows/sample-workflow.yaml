@@ -21,6 +21,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
       - name: Terraform Initialize, Plan and Apply
         run: |
+          pwd
           terraform version
           terraform init
           terraform plan
