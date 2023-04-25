@@ -4,7 +4,7 @@ on:
     branches:
       - main
 env:
-  SANDBOX: 'infra/environments/dev'
+  DEVELOPMENT: 'infra/environments/dev'
 jobs:
   dev:
     runs-on: ubuntu-latest
@@ -15,9 +15,8 @@ jobs:
         uses: hashicorp/setup-terraform@v2
       - name: Terraform Initialize, Plan and Apply
         run: |
-          pwd
           terraform version
           terraform init
           terraform plan
           terraform apply -auto-approve
-        working-directory: ${{ env.SANDBOX }}
+        working-directory: ${{ env.DEVELOPMENT }}
