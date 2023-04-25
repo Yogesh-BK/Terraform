@@ -7,7 +7,7 @@ on:
     inputs:
       terraform-folder-sandbox:
         description: 'Folder where the terraform code for dev environment resides'
-        required: false
+        required: true
         default: 'infra/environments/dev'
 env:
   TF_FOLDER_SANDBOX: ${{ github.event.inputs.terraform-folder-sandbox }}
