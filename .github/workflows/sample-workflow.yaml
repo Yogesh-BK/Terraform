@@ -1,0 +1,25 @@
+name: Sample workflow
+on:
+  workflow_dispatch:
+    inputs:
+      terraform-folder-sandbox:
+        description: 'Folder where the terraform code for dev environment resides'
+        required: true
+        default: 'infra/environments/dev'
+env:
+  TF_FOLDER_SANDBOX: ${{ github.event.inputs.version }}
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Get the list of files in our current directory
+        run: |
+          pwd
+          ls
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
