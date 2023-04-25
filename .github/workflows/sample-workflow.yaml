@@ -21,8 +21,6 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
       - name: Terraform Version
-        id: fmt
         run: terraform version
       - name: Terraform Format
-        id: fmt
         run: terraform fmt -check
